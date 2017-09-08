@@ -14,9 +14,10 @@
 	color: #DDD;
 	display: inline-block;
 	margin: 0 auto;
+	width: 30%;
 }
 
-#score{
+#score, #moves, #time{
 	color: white;
 	font-weight: bold;
 	font-size: 36px;

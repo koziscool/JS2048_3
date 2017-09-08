@@ -7,6 +7,9 @@ model2048 = {
 	newTiles: Array(16).fill(0),
 	probabilityNew2: 0.9,
 	gameScore: 0,
+	numMoves: 0,
+	startTime: 0,
+	elapsedTime: 0,
 
 	colors: [ 'lightgray','orange', 'darkkhaki', 'teal', 'limegreen', 'deepskyblue', 
       'navy', 'darkslategray', 'gray', 
@@ -15,6 +18,7 @@ model2048 = {
 	init: function(  ) {
 		this.addNewSquare();
 		this.addNewSquare();
+		this.startTime = new Date();
 	},
 
 	row: function( i ) { return Math.floor( i / this.SIDE );},
@@ -90,6 +94,9 @@ model2048 = {
 		if( this.notSameBoard( this.tiles, this.newTiles ) ) {
 			this.tiles = this.newTiles;
 			this.addNewSquare();
+			this.numMoves++;
+			var now = new Date();
+			this.elapsedTime = Math.floor( (now - this.startTime) / 1000 );
 		}
 
 	},

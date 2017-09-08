@@ -28,6 +28,10 @@ view2048 = {
 	updateScore: function(  ) {
 		var $score = $('#score');
 		$score.text( this.model.gameScore );
+		var $moves = $('#moves');
+		$moves.text( this.model.numMoves );
+		var $time = $('#time');
+		$time.text( this.model.elapsedTime );
 	},
 };
 
