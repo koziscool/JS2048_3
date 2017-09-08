@@ -1,4 +1,7 @@
 
+.grid{
+	position: relative;
+}
 
 .tile{
 	height: 128px;
@@ -8,5 +11,10 @@
 	border: 5px solid brown;
 }
 
-
+.name{
+	font-size: 36px;
+	font-weight:bold;
+	color: white;
+	transform: translateY(80%);
+}
 

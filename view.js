@@ -7,10 +7,8 @@ view2048 = {
 	updateTiles: function( ) {
 		var $grid = $('#grid');
 		var row, col, color;
-		console.log(this.model.tiles.length);
 		for( var i = 0; i < this.model.tiles.length; i++ ) {
 			var value = this.model.tiles[i];
-			console.log(value);
 			var display = value ? value : "";
 			var $tileDiv = $('<div><div class="name">' + display + '</div></div>');
 			$tileDiv.addClass('tile');
