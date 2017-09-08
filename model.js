@@ -58,17 +58,13 @@ model2048 = {
 
 	collapseArray: function( arr ) {
 		for( var i = 0; i < arr.length - 1; i++ ) {
-			if( !arr[i] ){
-				arr[i] = arr[i+1];
-				arr[i+1] = 0;
-			}
-
 			if( arr[i] === arr[i+1] ){
 				arr[i] *= 2;
 				this.gameScore += arr[i];
 				arr[i+1] = 0;
 			}
 		}
+		return this.stripBlanks( arr );
 	},
 
 	move: function( ascending, group_by ) {
@@ -84,7 +80,7 @@ model2048 = {
 			}
 
 			values = this.stripBlanks(values);
-			this.collapseArray(values);
+			values = this.collapseArray(values);
 
 			for( var j = 0; j < this.SIDE ; j++ ) {
 				values[j] ? this.newTiles[ indexes[j] ] = values[j] : this.newTiles[ indexes[j] ] = 0;
