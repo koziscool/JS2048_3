@@ -1,0 +1,12 @@
+
+
+.tile{
+	height: 128px;
+	width: 128px;
+	position: absolute;
+	text-align: center;
+	border: 5px solid brown;
+}
+
+
+
