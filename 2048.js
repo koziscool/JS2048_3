@@ -6,6 +6,7 @@ controller2048 = {
 	init: function(  ) {
 		this.model.init();
 		this.view.updateTiles();
+		this.view.updateScore();
 	},
 
 };
@@ -27,6 +28,7 @@ var handleKey = function( e ) {
 			break;
 	}
 	view2048.updateTiles();
+	view2048.updateScore();
 };
 
 $(document).ready( function() {

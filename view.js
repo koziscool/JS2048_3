@@ -24,7 +24,11 @@ view2048 = {
 		}
 
 	},
-
+	
+	updateScore: function(  ) {
+		var $score = $('#score');
+		$score.text( this.model.gameScore );
+	},
 };
 
 
