@@ -3,10 +3,10 @@
 
 .game-info-container{
 	display: block;
-	height: 60px;
+	height: 70px;
 	background-color: gray;
-	margin: 0 0 30px 0;
-	width: 512px;
+	margin: 0 0 20px 0;
+	width: 600px;
 }
 
 .section{
@@ -15,6 +15,7 @@
 	display: inline-block;
 	margin: 0 auto;
 	width: 30%;
+	transform: translateY(40%);
 }
 
 #score, #moves, #time{
@@ -23,6 +24,36 @@
 	font-size: 36px;
 	display: inline;
 }
+
+.container{
+	display: block;
+	top: 0px;
+}
+
+.title-numbers-container{
+	display: block;
+}
+
+.grid-container, .controls{
+	display: block;
+}
+
+
+.title-numbers{
+	width:80px;
+	height: 80px;
+	display: inline;
+}
+
+/*
+.grid-container{
+	width: 60%;
+}
+
+.controls{
+	width: 40%;
+}
+*/
 
 #grid{
 	position: relative;

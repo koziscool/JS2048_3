@@ -98,8 +98,12 @@ model2048 = {
 			var now = new Date();
 			this.elapsedTime = Math.floor( (now - this.startTime) / 1000 );
 		}
-
 	},
+
+	moveLeft: function( ) { this.move( false, "r"); },
+	moveUp: function( ) { this.move( false, "c"); },
+	moveRight: function( ) { this.move( true, "r"); },
+	moveDown: function( ) { this.move( true, "c"); },
 
 };
 

@@ -4,6 +4,7 @@
 <head>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="model.js"></script>
+	<script src="solver.js"></script>
 	<script src="view.js"></script>
 	<script src="2048.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -30,9 +31,32 @@
 		</div>
 	</div>
 
-	<div class="grid-container">
-		<div id="grid">
+	<div class="container">
+		<div class="title-numbers-container">
+			<img src="assets/two.png" class="title-numbers"></img>
+			<img src="assets/zero.png" class="title-numbers"></img>
+			<img src="assets/four.png" class="title-numbers"></img>
+			<img src="assets/eight.png" class="title-numbers"></img>
 		</div>
+
+		<div class="controls">
+			<div class="form-container">
+				<form>
+					<label for="">Number of moves</label>
+					<br>
+					<input type="text" id="num-moves" name="num-moves" value="10"></input>
+					<br>
+					<input type="submit" value="Solve"/>
+					<br>
+				</form>
+			</div>
+		</div>
+
+		<div class="grid-container">
+			<div id="grid">
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>
