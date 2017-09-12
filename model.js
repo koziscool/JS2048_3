@@ -62,14 +62,16 @@ model2048 = {
 			for( var i = start + 1; i < arr.length ; i++ ) {
 				if( arr[i] !== 0 )  return false;
 			}
+			for( var i = 0; i < start - 1; i++ ) {
+				if( arr[i] === arr[i+1] )  return false;
+			}
 			return true;
 		} else {
-			if( 
+			return ( 
 				arr[0] !== arr[1] &&
 				arr[1] !== arr[2] &&
 				arr[2] !== arr[3] 
-			) return true;
-			return false;
+			);
 		}
 	},
 
@@ -84,20 +86,20 @@ model2048 = {
 		var eligibles = [];
 		for( var index in directions ) {
 			var directionEligible = false;
-			this.newTiles = this.tiles.slice();
+			//this.newTiles = this.tiles.slice();
 			var o = directions[index];
 			for( var i = 0; i < this.SIDE ; i++ ) {
 				var values = [], indexes = [], k, index;
 				for( var j = 0; j < this.SIDE ; j++ ) {
 					o.ascending ? k = this.SIDE - j - 1 : k = j;
 					o.group_by === "c" ? index = this.index(k, i) : index = this.index(i, k); 
-					values.push( this.newTiles[index] );
+					values.push( this.tiles[index] );
 				}
 				if( !this.lockedArray(values) ) directionEligible = true;
 			}
 			if( directionEligible ) eligibles.push( o.direction );
 		}
-		console.log(eligibles);
+		if(eligibles.length === 1) debugger;
 		return eligibles;
 	},
 
@@ -136,14 +138,12 @@ model2048 = {
 			}
 		}
 
-		if( this.notSameBoard( this.tiles, this.newTiles ) ) {
-			this.tiles = this.newTiles;
-			this.addNewSquare();
-			this.numMoves++;
-			var now = new Date();
-			this.elapsedTime = Math.floor( (now - this.startTime) / 1000 );
-			console.log(this.eligibleMoves());
-		}
+		this.tiles = this.newTiles;
+		this.addNewSquare();
+		this.numMoves++;
+		var now = new Date();
+		this.elapsedTime = Math.floor( (now - this.startTime) / 1000 );
+		console.log(this.eligibleMoves());
 	},
 
 	moveLeft: function( ) { this.move( false, "r"); },
