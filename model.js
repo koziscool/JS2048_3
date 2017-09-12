@@ -56,6 +56,51 @@ model2048 = {
 		return Math.random() < this.probabilityNew2 ? 2 : 4;
 	},
 
+	lockedArray: function( arr ) {
+		if( arr.indexOf(0) !== -1 ){
+			var start = arr.indexOf(0);
+			for( var i = start + 1; i < arr.length ; i++ ) {
+				if( arr[i] !== 0 )  return false;
+			}
+			return true;
+		} else {
+			if( 
+				arr[0] !== arr[1] &&
+				arr[1] !== arr[2] &&
+				arr[2] !== arr[3] 
+			) return true;
+			return false;
+		}
+	},
+
+	eligibleMoves: function(  ) {
+		var directions = [ 
+			{ direction: "left", ascending: false, group_by: "r" },
+			{ direction: "up", ascending: false, group_by: "c" },
+			{ direction: "right", ascending: true, group_by: "r" },
+			{ direction: "down", ascending: true, group_by: "c" }
+		];
+
+		var eligibles = [];
+		for( var index in directions ) {
+			var directionEligible = false;
+			this.newTiles = this.tiles.slice();
+			var o = directions[index];
+			for( var i = 0; i < this.SIDE ; i++ ) {
+				var values = [], indexes = [], k, index;
+				for( var j = 0; j < this.SIDE ; j++ ) {
+					o.ascending ? k = this.SIDE - j - 1 : k = j;
+					o.group_by === "c" ? index = this.index(k, i) : index = this.index(i, k); 
+					values.push( this.newTiles[index] );
+				}
+				if( !this.lockedArray(values) ) directionEligible = true;
+			}
+			if( directionEligible ) eligibles.push( o.direction );
+		}
+		console.log(eligibles);
+		return eligibles;
+	},
+
 	stripBlanks: function( arr ) {
 		return arr.filter( function(elt){ return !!elt; } );
 	},
@@ -97,6 +142,7 @@ model2048 = {
 			this.numMoves++;
 			var now = new Date();
 			this.elapsedTime = Math.floor( (now - this.startTime) / 1000 );
+			console.log(this.eligibleMoves());
 		}
 	},
 

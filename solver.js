@@ -5,7 +5,7 @@ solver2048 = {
 
 	solve: function( numMoves ) {
 		this.numMoves = numMoves || this.numMoves;
-		console.log("solve");
+		console.log("solve", this.numMoves);
 	},
 
 };
