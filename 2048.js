@@ -11,7 +11,7 @@ controller2048 = {
 	},
 
 	solve: function( numMoves ) {
-		this.solver.solve( numMoves );
+		this.solver.go( numMoves );
 	},
 
 };

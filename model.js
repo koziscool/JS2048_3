@@ -5,6 +5,15 @@ model2048 = {
 	SIDE: 4,
 	tiles: Array(16).fill(0),
 	newTiles: Array(16).fill(0),
+
+	directions: [ 
+		{ direction: "left", ascending: false, group_by: "r" },
+		{ direction: "up", ascending: false, group_by: "c" },
+		{ direction: "right", ascending: true, group_by: "r" },
+		{ direction: "down", ascending: true, group_by: "c" }
+	],
+	eligibles: [],
+
 	probabilityNew2: 0.9,
 	gameScore: 0,
 	numMoves: 0,
@@ -12,8 +21,8 @@ model2048 = {
 	elapsedTime: 0,
 
 	colors: [ 'lightgray','orange', 'darkkhaki', 'teal', 'limegreen', 'deepskyblue', 
-      'navy', 'darkslategray', 'gray', 
-      'olive', 'orchid', 'darkred', 'black', 'darkgreen', 'lightblue', 'pink'],
+		'navy', 'darkslategray', 'gray', 
+		'olive', 'orchid', 'darkred', 'black', 'darkgreen', 'lightblue', 'pink'],
 	
 	init: function(  ) {
 		this.addNewSquare();
@@ -75,19 +84,12 @@ model2048 = {
 		}
 	},
 
-	eligibleMoves: function(  ) {
-		var directions = [ 
-			{ direction: "left", ascending: false, group_by: "r" },
-			{ direction: "up", ascending: false, group_by: "c" },
-			{ direction: "right", ascending: true, group_by: "r" },
-			{ direction: "down", ascending: true, group_by: "c" }
-		];
+	computeEligibleMoves: function(  ) {
 
-		var eligibles = [];
-		for( var index in directions ) {
+		this.eligibles = [];
+		for( var index in this.directions ) {
 			var directionEligible = false;
-			//this.newTiles = this.tiles.slice();
-			var o = directions[index];
+			var o = this.directions[index];
 			for( var i = 0; i < this.SIDE ; i++ ) {
 				var values = [], indexes = [], k, index;
 				for( var j = 0; j < this.SIDE ; j++ ) {
@@ -97,10 +99,9 @@ model2048 = {
 				}
 				if( !this.lockedArray(values) ) directionEligible = true;
 			}
-			if( directionEligible ) eligibles.push( o.direction );
+			if( directionEligible ) this.eligibles.push( o.direction );
 		}
-		if(eligibles.length === 1) debugger;
-		return eligibles;
+		return this.eligibles;
 	},
 
 	stripBlanks: function( arr ) {
@@ -143,13 +144,27 @@ model2048 = {
 		this.numMoves++;
 		var now = new Date();
 		this.elapsedTime = Math.floor( (now - this.startTime) / 1000 );
-		console.log(this.eligibleMoves());
 	},
 
-	moveLeft: function( ) { this.move( false, "r"); },
-	moveUp: function( ) { this.move( false, "c"); },
-	moveRight: function( ) { this.move( true, "r"); },
-	moveDown: function( ) { this.move( true, "c"); },
+	moveLeft: function( ) {
+		this.computeEligibleMoves();
+		if( this.eligibles.indexOf('left') >= 0 ) this.move( false, "r");
+	},
+	
+	moveUp: function( ) { 
+		this.computeEligibleMoves();
+		if( this.eligibles.indexOf('up') >= 0 ) this.move( false, "c"); 
+	},
+
+	moveRight: function( ) { 
+		this.computeEligibleMoves();
+		if( this.eligibles.indexOf('right') >= 0 ) this.move( true, "r"); 
+	},
+
+	moveDown: function( ) { 
+		this.computeEligibleMoves();
+		if( this.eligibles.indexOf('down') >= 0 ) this.move( true, "c"); 
+	},
 
 };
 
