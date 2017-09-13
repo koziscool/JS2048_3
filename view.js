@@ -32,6 +32,10 @@ view2048 = {
 		$moves.text( this.model.numMoves );
 		var $time = $('#time');
 		$time.text( this.model.elapsedTime );
+		var $edge = $('#edge-weight');
+		$edge.text( this.model.computeEdgeWeight() );
+		var $total = $('#total-weight');
+		$total.text( this.model.computeTotalWeight() );
 	},
 };
 

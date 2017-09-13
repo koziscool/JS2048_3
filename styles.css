@@ -1,5 +1,14 @@
 
 
+.title-container{
+	width: 600px;
+}
+
+.title-numbers-container{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
 
 .game-info-container{
 	display: block;
@@ -9,7 +18,25 @@
 	width: 600px;
 }
 
-.section{
+.game-info-section{
+	text-align: center;
+	color: #DDD;
+	display: inline-block;
+	margin: 0 auto;
+	width: 23%;
+	transform: translateY(40%);
+}
+
+.analytics-container{
+	display: block;
+	height: 70px;
+	background-color: gray;
+	margin: 0 0 20px 0;
+	width: 600px;
+}
+
+
+.analytics-section{
 	text-align: center;
 	color: #DDD;
 	display: inline-block;
@@ -18,7 +45,7 @@
 	transform: translateY(40%);
 }
 
-#score, #moves, #time{
+.game-info-section div, .analytics-section div{
 	color: white;
 	font-weight: bold;
 	font-size: 36px;
@@ -30,11 +57,20 @@
 	top: 0px;
 }
 
-.title-numbers-container{
-	display: block;
+.controls-grid{
+	width: 600px;
 }
 
-.grid-container, .controls{
+.controls{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.buffer{
+	height:30px;
+}
+
+.grid-container{
 	display: block;
 }
 
@@ -45,15 +81,6 @@
 	display: inline;
 }
 
-/*
-.grid-container{
-	width: 60%;
-}
-
-.controls{
-	width: 40%;
-}
-*/
 
 #grid{
 	position: relative;

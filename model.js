@@ -19,6 +19,8 @@ model2048 = {
 	numMoves: 0,
 	startTime: 0,
 	elapsedTime: 0,
+	totalWeight: 1, 
+	edgeWeight: 0,
 
 	colors: [ 'lightgray','orange', 'darkkhaki', 'teal', 'limegreen', 'deepskyblue', 
 		'navy', 'darkslategray', 'gray', 
@@ -82,6 +84,24 @@ model2048 = {
 				arr[2] !== arr[3] 
 			);
 		}
+	},
+
+	computeTotalWeight: function() {
+		var startTile = 0, total = 0;
+		for( var i = startTile; i < this.tiles.length; i++ ) {
+			total += this.tiles[i];
+		}
+		this.totalWeight = total;
+		return total;
+	},
+
+	computeEdgeWeight: function() {
+		var startTile = 12, total = 0;
+		for( var i = startTile; i < this.tiles.length; i++ ) {
+			total += this.tiles[i];
+		}
+		this.edgeWeight = total;
+		return total;
 	},
 
 	computeEligibleMoves: function(  ) {
